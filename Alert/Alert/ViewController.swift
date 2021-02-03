@@ -24,16 +24,23 @@ class ViewController: UIViewController
         // Do any additional setup after loading the view.
         lampImg.image = imgOn
     }
-
+    
+    // 켜키 버튼 눌렀을 때 동작하는 콜백함수
     @IBAction func LampOn(_ sender: UIButton)
     {
+        // if(isLampOn)으로 작성해도 됨 : 어차피 해당 변수값이 true이기 때문
         if(isLampOn == true)
         {
+            // lamp가 켜졌을 때 작동하는 Alert 생성
             let lampOnAlert = UIAlertController(title: "경고", message: "현재 ON 상태입니다", preferredStyle: UIAlertController.Style.alert)
             
+            // Alert Action 생성
             let onAction = UIAlertAction(title: "네, 알겠습니다.", style: UIAlertAction.Style.default, handler: nil)
             
+            // Alert에 생성한 Alert Action 추가
             lampOnAlert.addAction(onAction)
+            
+            // present 메서드 실행
             present(lampOnAlert, animated: true, completion: nil)
         }
         
@@ -50,9 +57,13 @@ class ViewController: UIViewController
         {
             let lampOffAlert = UIAlertController(title: "램프 끄기", message: "램프를 끄시겠습니까?", preferredStyle: UIAlertController.Style.alert)
             
-            let offAction = UIAlertAction(title: "네", style: UIAlertAction.Style.default, handler: {ACTION in self.lampImg.image = self.imgOff
-                self.isLampOn = false
-            })
+            let offAction = UIAlertAction(title: "네", style: UIAlertAction.Style.default,
+                                          handler:
+                                            {
+                                                ACTION in self.lampImg.image = self.imgOff
+                                                self.isLampOn = false
+                                                
+                                            }) // Anonymous Functions(익명함수), Closure == 파이썬 lambda
             
             let cancelAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default, handler: nil)
             
