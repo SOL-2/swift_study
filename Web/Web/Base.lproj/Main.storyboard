@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Web" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ACc-ex-wPJ">
+                                <rect key="frame" x="20" y="57" width="314" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xL-r1-wYM">
+                                <rect key="frame" x="18" y="163" width="374" height="644"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-3m-lTl">
+                                <rect key="frame" x="353" y="61" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go"/>
+                                <connections>
+                                    <action selector="GotoUrl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9X8-hf-5Is"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="82" id="8xv-s1-Ffz">
+                                <rect key="frame" x="16" y="125" width="378" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnS-O9-mae">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="30"/>
+                                        <state key="normal" title="Site1"/>
+                                        <connections>
+                                            <action selector="GoSite1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tvq-1n-0Uo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDU-DL-lMI">
+                                        <rect key="frame" x="115" y="0.0" width="36" height="30"/>
+                                        <state key="normal" title="Site2"/>
+                                        <connections>
+                                            <action selector="GoSite2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eUr-y4-nbx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xib-EM-bFc">
+                                        <rect key="frame" x="233" y="0.0" width="33" height="30"/>
+                                        <state key="normal" title="Html"/>
+                                        <connections>
+                                            <action selector="Load_HtmlString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yEw-RP-Xi4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIQ-tz-HB0">
+                                        <rect key="frame" x="348" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="File"/>
+                                        <connections>
+                                            <action selector="Load_HtmlFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Wj-pn-Qqf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXr-zn-AKi">
+                                <rect key="frame" x="-2" y="807" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wFl-Uy-lhE"/>
+                                    <barButtonItem title="Item" systemItem="stop" id="ZvI-Xw-a7n">
+                                        <connections>
+                                            <action selector="Stop:" destination="BYZ-38-t0r" id="AW1-st-fhH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WJn-Cf-gD9"/>
+                                    <barButtonItem title="Item" systemItem="refresh" id="ao1-Xw-tse">
+                                        <connections>
+                                            <action selector="Refresh:" destination="BYZ-38-t0r" id="VrX-nZ-Oaa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mLs-4d-wVw"/>
+                                    <barButtonItem systemItem="rewind" id="POA-5N-jti">
+                                        <connections>
+                                            <action selector="Rewind:" destination="BYZ-38-t0r" id="b1v-6h-T8m"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IUm-0E-nqm"/>
+                                    <barButtonItem title="Item" systemItem="fastForward" id="vdc-a4-AFg">
+                                        <connections>
+                                            <action selector="FastForward:" destination="BYZ-38-t0r" id="Q26-vK-ISd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pM5-98-Mw0"/>
+                                    <barButtonItem id="39I-qQ-rc5"/>
+                                </items>
+                            </toolbar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-IX-gXN">
+                                <rect key="frame" x="197" y="475" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="myActivitiIndicator" destination="6sj-IX-gXN" id="VaS-Bh-aBa"/>
+                        <outlet property="myWebView" destination="1xL-r1-wYM" id="ZU6-B7-rnr"/>
+                        <outlet property="txtUrl" destination="ACc-ex-wPJ" id="gjl-8n-RHM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528.98550724637687" y="75.669642857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
