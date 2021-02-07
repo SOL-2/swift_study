@@ -25,8 +25,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         Location_Info1.text = ""
         Location_Info2.text = ""
         locationManager.delegate = self
+        
+        // 정확도 최고로 설정
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // 위치 데이터를 추적하기 위해 사용자에게 승인 요구
         locationManager.requestWhenInUseAuthorization()
+        
+        // 위치 업데이트를 시작
         locationManager.startUpdatingLocation()
         myMap.showsUserLocation = true
         
@@ -38,10 +44,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         let spanValue = MKCoordinateSpan(latitudeDelta:latitudeValue, longitudeDelta:longitudeValue)
         let pRegion = MKCoordinateRegion(center: pLocation, span: spanValue)
         //myMap.setRegion(pRegion, animated: true)
-        myMap.setCenter(pLocation, animated: true)
+        myMap.setCenter(pLocation, animated: true) // setRegion 대신 setCenter로 변경
         return pLocation
     }
     
+    // 특정 위도, 경도에 핀 설치, 타이틀, 서브 타이틀 표시
     func setAnnotation(latittudeValue: CLLocationDegrees, longitudeValue: CLLocationDegrees, delta span: Double, title strTitle: String, subtitle strSubtitle: String)
     {
         let annotation = MKPointAnnotation()
@@ -84,7 +91,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         locationManager.stopUpdatingLocation()
         
     }
-
+    
+    // 세그먼트 컨트롤을 선택했을 때 호출
     @IBAction func ChangeLocation(_ sender: UISegmentedControl)
     {
         // 현재 위치
