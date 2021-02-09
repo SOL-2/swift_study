@@ -7,6 +7,9 @@
 
 import UIKit
 
+// 프로토콜 : 특정 객체가 갖추어야 할 기능이나 속성에 대한 설계도
+// 선언 형태만 가짐. 실질적 내용은 이 프로토콜을 이용하는 객체에서 정의
+ 
 protocol EditDeligate
 {
     func didMessageEditDone(_ controller: EditViewController, message: String)
