@@ -11,7 +11,7 @@
         <!--Main View-->
         <scene sceneID="va9-td-zrG">
             <objects>
-                <tableViewController id="kA5-ct-4Yr" sceneMemberID="viewController">
+                <tableViewController id="kA5-ct-4Yr" customClass="TableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8eo-zh-EIj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +41,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ListView" destination="8eo-zh-EIj" id="5sN-bj-WlZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lg8-zD-rUy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +52,7 @@
         <!--Add View-->
         <scene sceneID="Yaa-97-Hms">
             <objects>
-                <viewController title="Add View" id="zSf-6V-SO4" sceneMemberID="viewController">
+                <viewController title="Add View" id="zSf-6V-SO4" customClass="AddViewController" customModule="Table" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oy4-la-RYm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,12 +67,18 @@
                                 <rect key="frame" x="192" y="234" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="AddBtn:" destination="zSf-6V-SO4" eventType="touchUpInside" id="fZr-Mo-8ik"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kYf-JY-4CT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add View" id="ucl-gR-t6U"/>
+                    <connections>
+                        <outlet property="AddItem" destination="YFn-HY-qmL" id="XZ1-VJ-2KY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZM1-eI-y3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,7 +87,7 @@
         <!--Detail View-->
         <scene sceneID="DWl-cr-d57">
             <objects>
-                <viewController title="Detail View" id="ope-2R-CxY" sceneMemberID="viewController">
+                <viewController title="Detail View" id="ope-2R-CxY" customClass="DetailViewController" customModule="Table" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zzT-Jm-j3s">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,6 +104,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail View" id="wH2-Vw-ozI"/>
+                    <connections>
+                        <outlet property="Item" destination="8M7-Kv-I5v" id="i4C-Ab-joy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AD2-tz-aux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
