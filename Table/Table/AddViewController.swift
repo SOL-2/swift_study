@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddViewController: UITableViewController
+class AddViewController: UIViewController
 {
     @IBOutlet var AddItem: UITextField!
     
@@ -25,20 +25,14 @@ class AddViewController: UITableViewController
 
     @IBAction func AddBtn(_ sender: UIButton)
     {
+        items.append(AddItem.text!)
+        itemsImageFile.append("clock.png")
+        AddItem.text = ""
+        _ = navigationController?.popViewController(animated: true)
     }
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int
-    {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

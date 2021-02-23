@@ -9,6 +9,9 @@ import UIKit
 
 class DetailViewController: UIViewController
 {
+    // Main View에서 받을 텍스트를 위해 변수 선언
+    var receiveItem = ""
+    
     @IBOutlet var Item: UILabel!
     
     override func viewDidLoad()
@@ -16,6 +19,14 @@ class DetailViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // 뷰가 노출될 때마다 내용을 레이블의 텍스트로 표현
+        Item.text = receiveItem
+    }
+    
+    func receiveItem(_ item: String)
+    {
+        // Main View에서 변수를 받기 위한 함수 추가
+        receiveItem = item
     }
     
 

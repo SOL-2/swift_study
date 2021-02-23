@@ -37,7 +37,7 @@
                     <navigationItem key="navigationItem" title="Main View" id="mfN-y8-4Bm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eBE-Iw-2wh">
                             <connections>
-                                <segue destination="zSf-6V-SO4" kind="show" id="CmQ-8W-YEf"/>
+                                <segue destination="zSf-6V-SO4" kind="show" identifier="sgAdd" id="CmQ-8W-YEf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

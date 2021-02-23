@@ -22,9 +22,14 @@ class TableViewController: UITableViewController
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
-
+    
+    // 테이블 뷰를 다시 불러옴(추가된 내용을 목록으로 불러들임)
+    override func viewWillAppear(_ animated: Bool)
+    {
+        ListView.reloadData()
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int
@@ -61,24 +66,42 @@ class TableViewController: UITableViewController
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
             // Delete the row from the data source
+            items.remove(at: (indexPath as NSIndexPath).row)
+            itemsImageFile.remove(at: (indexPath as NSIndexPath).row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
+        }
+        else if editingStyle == .insert
+        {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String?
+    {
+        return "삭제"
+    }
+    
 
-    /*
+
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath)
+    {
+        let itemToMove = items[(fromIndexPath as NSIndexPath).row]
+        let itemImageToMove = itemsImageFile[(fromIndexPath as NSIndexPath).row]
+        items.remove(at: (fromIndexPath as NSIndexPath).row)
+        itemsImageFile.remove(at: (fromIndexPath as NSIndexPath).row)
+        items.insert(itemToMove, at: (to as NSIndexPath).row)
+        itemsImageFile.insert(itemImageToMove, at: (to as NSIndexPath).row)
 
     }
-    */
+
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -88,14 +111,22 @@ class TableViewController: UITableViewController
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "sgDetail"
+        {
+            let cell = sender as! UITableViewCell
+            let indexPath = self.ListView.indexPath(for: cell)
+            let detailView = segue.destination as! DetailViewController
+            detailView.receiveItem(items[((indexPath as NSIndexPath?)?.row)!])
+        }
     }
-    */
+
 
 }
