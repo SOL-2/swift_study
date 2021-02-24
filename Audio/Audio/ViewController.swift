@@ -29,7 +29,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        audioFile = Bundle.main.url(forResource: "우리는", withExtension: "m4a")
+        audioFile = Bundle.main.url(forResource: "bensound-thejazzpiano", withExtension: "mp3")
         initPlay()
     }
     

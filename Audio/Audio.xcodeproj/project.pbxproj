@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F2987B3525E6300C00FE8692 /* 우리는.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F2987B3425E6300C00FE8692 /* 우리는.m4a */; };
+		F2987B3925E6336100FE8692 /* bensound-thejazzpiano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F2987B3825E6336100FE8692 /* bensound-thejazzpiano.mp3 */; };
 		F2A9380225E4EB2200F520E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9380125E4EB2200F520E9 /* AppDelegate.swift */; };
 		F2A9380425E4EB2200F520E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9380325E4EB2200F520E9 /* SceneDelegate.swift */; };
 		F2A9380625E4EB2200F520E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9380525E4EB2200F520E9 /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F2987B3425E6300C00FE8692 /* 우리는.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "우리는.m4a"; sourceTree = "<group>"; };
+		F2987B3825E6336100FE8692 /* bensound-thejazzpiano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-thejazzpiano.mp3"; sourceTree = "<group>"; };
 		F2A937FE25E4EB2200F520E9 /* Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A9380125E4EB2200F520E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2A9380325E4EB2200F520E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		F2A9380025E4EB2200F520E9 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				F2987B3425E6300C00FE8692 /* 우리는.m4a */,
+				F2987B3825E6336100FE8692 /* bensound-thejazzpiano.mp3 */,
 				F2A9380125E4EB2200F520E9 /* AppDelegate.swift */,
 				F2A9380325E4EB2200F520E9 /* SceneDelegate.swift */,
 				F2A9380525E4EB2200F520E9 /* ViewController.swift */,
@@ -128,8 +128,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A9380E25E4EB2200F520E9 /* LaunchScreen.storyboard in Resources */,
+				F2987B3925E6336100FE8692 /* bensound-thejazzpiano.mp3 in Resources */,
 				F2A9380B25E4EB2200F520E9 /* Assets.xcassets in Resources */,
-				F2987B3525E6300C00FE8692 /* 우리는.m4a in Resources */,
 				F2A9380925E4EB2200F520E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
