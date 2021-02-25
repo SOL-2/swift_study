@@ -8,12 +8,15 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioPlayerDelegate
+class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate
 {
     var audioPlayer : AVAudioPlayer!
     var audioFile : URL!
     let MAX_VOLUME : Float = 10.0
-    var progressTime : Timer!
+    var progressTimer : Timer!
+    
+    let timePlayerSelector:Selector = #selector(ViewController.updatePlayTime)
+    let timeRecordSelector:Selector = #selector(ViewController.updateRecordTime)
 
     @IBOutlet var progressPlay: UIProgressView!
     @IBOutlet var CurrentTime: UILabel!
@@ -25,12 +28,90 @@ class ViewController: UIViewController, AVAudioPlayerDelegate
     
     @IBOutlet var Volume: UISlider!
     
+    @IBOutlet var RecordBtn: UIButton!
+    @IBOutlet var RecordTime: UILabel!
+    
+    var audioRecorder : AVAudioRecorder!
+    var isRecordMode = false
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        audioFile = Bundle.main.url(forResource: "bensound-thejazzpiano", withExtension: "mp3")
-        initPlay()
+        selectAudioFile()
+        
+        if !isRecordMode
+        {
+            initPlay()
+            RecordBtn.isEnabled = false
+            RecordTime.isEnabled = false
+        }
+        else
+        {
+            initRecord()
+        }
+    }
+    
+    func selectAudioFile()
+    {
+        if !isRecordMode
+        {
+            audioFile = Bundle.main.url(forResource: "bensound-thejazzpiano", withExtension: "mp3")
+        }
+        
+        else
+        {
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            
+            audioFile = documentDirectory.appendingPathComponent("recordFile.m4a")
+        }
+    }
+    
+    func initRecord()
+    {
+        let recordSettings = [
+            AVFormatIDKey : NSNumber(value: kAudioFormatAppleLossless as UInt32),
+            AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
+            AVEncoderBitRateKey : 320000,
+            AVNumberOfChannelsKey : 2,
+            AVSampleRateKey : 44100.0] as [String : Any]
+        
+        do
+        {
+            audioRecorder = try AVAudioRecorder(url: audioFile, settings: recordSettings)
+        }
+        catch let error as NSError
+        {
+            print("Error-initRecord : \(error)")
+        }
+        audioRecorder.delegate = self  //AudioRecorder의 델리게이트를 self로 설정
+        
+        Volume.value = 1.0  // 볼륨 슬라이더 값 1.0으로 설정
+        audioPlayer.volume = Volume.value // audioPlayer의 볼륨을 슬라이더와 동일하게
+        EndTime.text = convertNSTimeInterval2String(0) // 총 재생시간 0
+        CurrentTime.text = convertNSTimeInterval2String(0) // 현재 재생 시간 0
+        setPlayButtons(false, pause: false, stop: false)
+        
+        let session = AVAudioSession.sharedInstance()
+        do
+        {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch let error as NSError
+        {
+            print("Error-setCategory : \(error)")
+        }
+        
+        do
+        {
+            try session.setActive(true)
+        }
+        catch let error as NSError
+        {
+            print("Error-setActive : \(error)")
+        }
     }
     
     func initPlay()
@@ -81,6 +162,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate
     {
         audioPlayer.play()
         setPlayButtons(false, pause: true, stop: true)
+        progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)
+    }
+    
+    @objc func updatePlayTime()
+    {
+        CurrentTime.text = convertNSTimeInterval2String(audioPlayer.currentTime)
+        progressPlay.progress = Float(audioPlayer.currentTime/audioPlayer.duration)
     }
     
     @IBAction func PauseAudio(_ sender: UIButton)
@@ -92,11 +180,78 @@ class ViewController: UIViewController, AVAudioPlayerDelegate
     @IBAction func StopAudio(_ sender: UIButton)
     {
         audioPlayer.stop()
+        audioPlayer.currentTime = 0 // 오디오 정지하고 다시 재생하면 처음부터 재생
+        CurrentTime.text = convertNSTimeInterval2String(0) // 재생시간 초기화
         setPlayButtons(true, pause: false, stop: false)
+        progressTimer.invalidate() // 타이머 무효화
     }
     
     @IBAction func ChangeVolume(_ sender: UISlider)
     {
+        audioPlayer.volume = Volume.value
     }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
+    {
+        progressTimer.invalidate()
+        setPlayButtons(true, pause: false, stop: false)
+    }
+    
+    @IBAction func RecordMode(_ sender: UISwitch)
+    {
+        if sender.isOn
+        {
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+            RecordTime!.text = convertNSTimeInterval2String(0)
+            isRecordMode = true
+            RecordBtn.isEnabled = true
+            RecordTime.isEnabled = true
+        }
+        else
+        {
+            isRecordMode = false
+            RecordBtn.isEnabled = false
+            RecordTime.isEnabled = false
+            RecordTime.text = convertNSTimeInterval2String(0)
+        }
+        
+        selectAudioFile()
+        
+        if !isRecordMode
+        {
+            initPlay()
+        }
+        else
+        {
+            initRecord()
+        }
+    }
+    
+    @IBAction func RecordBtn(_ sender: UIButton)
+    {
+        if (sender as AnyObject).titleLabel?.text == "Record"
+        {
+            audioRecorder.record()
+            (sender as AnyObject).setTitle("Stop", for: UIControl.State())
+            
+            progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeRecordSelector, userInfo: nil, repeats: true)
+        }
+        else
+        {
+            audioRecorder.stop()
+            progressTimer.invalidate()
+            (sender as AnyObject).setTitle("Record", for: UIControl.State())
+            PlayBtn.isEnabled = true
+            initPlay()
+        }
+    }
+    
+    @objc func updateRecordTime()
+    {
+        RecordTime.text = convertNSTimeInterval2String(audioRecorder.currentTime)
+    }
+
+    
 }
 
